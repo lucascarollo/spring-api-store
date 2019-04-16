@@ -6,7 +6,7 @@ CREATE TABLE pessoa (
     razao_social_ou_rg VARCHAR(30) NOT NULL,
     telefone VARCHAR(20),
     email VARCHAR(60) NOT NULL,
-    data_nascimento DATE NOT NULL,
+    data_nascimento DATE,
     logradouro VARCHAR(50),
     numero VARCHAR(15),
     complemento VARCHAR(20),

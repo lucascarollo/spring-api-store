@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.GeneratedValue;
@@ -49,9 +50,22 @@ public class Pessoa implements Serializable {
 	@NotBlank(message = "E-mail inválido")
 	private String email;
 	
-	@NotBlank
+	
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
+
+	@Embedded
+	private Endereco endereco;
+	 
+	
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public Long getCodigo() {
 		return codigo;
