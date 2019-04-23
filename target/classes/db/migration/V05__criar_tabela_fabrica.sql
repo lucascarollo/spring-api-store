@@ -1,0 +1,15 @@
+CREATE TABLE fabrica (
+	codigo BIGINT(2) PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(80) NOT NULL,
+	cnpj VARCHAR(30) NOT NULL,
+	inscricao_estadual VARCHAR(30) NOT NULL,
+	razao_social VARCHAR(100) NOT NULL,
+	telefone VARCHAR(30) NOT NULL,
+	telefone_celular VARCHAR(30) NOT NULL,
+	email VARCHAR(80) NOT NULL,
+	estado VARCHAR(30) NOT NULL,
+	cidade VARCHAR(60) NOT NULL,
+	logradouro VARCHAR(100) NOT NULL,
+	numero VARCHAR(30) NOT NULL,
+	bairro VARCHAR(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
