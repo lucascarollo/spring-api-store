@@ -37,6 +37,8 @@ public class Fabrica implements Serializable {
 	
 	private String email;
 	
+	private String cep;
+	
 	private String estado;
 	
 	private String cidade;
@@ -109,6 +111,16 @@ public class Fabrica implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getEstado() {
