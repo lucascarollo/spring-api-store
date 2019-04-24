@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "estacao_romaneio")
@@ -27,8 +28,9 @@ public class EstacaoRomaneio implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn (name = "codigo_fabrica")
-	@JsonIgnore //PESQUISAR SOBRE
+	// @JsonIgnore //PESQUISAR SOBRE
 	//FALAR COM LUCAS SOBRE UNIDIRECIONAL E BIDIRECIONAL
+	@JsonIgnoreProperties({"telefone", "telefoneCelular","email","cep","estado","cidade","logradouro","numero","bairro"})
 	private Fabrica fabrica;
 	
 	private Date ano;
