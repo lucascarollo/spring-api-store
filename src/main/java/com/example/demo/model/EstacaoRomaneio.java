@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table (name = "estacao_romaneio")
@@ -23,8 +26,8 @@ public class EstacaoRomaneio implements Serializable{
 	private Long codigo;
 	
 	@ManyToOne
-	// @JoinColumn (name = "codigo_fabrica")
-	// @JsonIgnore PESQUISAR SOBRE
+	@JoinColumn (name = "codigo_fabrica")
+	@JsonIgnore //PESQUISAR SOBRE
 	//FALAR COM LUCAS SOBRE UNIDIRECIONAL E BIDIRECIONAL
 	private Fabrica fabrica;
 	
