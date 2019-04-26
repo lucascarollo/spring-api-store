@@ -19,3 +19,8 @@ INSERT INTO fabrica (nome,cnpj, inscricao_estadual,razao_social,telefone,telefon
 					email,cep,estado,cidade,logradouro,numero,bairro ) VALUES 
 							('MONNARI JEANS','1111111', '111111', 'Monnari Jeans ME', '4734114000', 'ntem', 
 							'marketing@monnari.com.br','8988888', 'SC', 'Navegantes', 'KM 470','10000','Rodovia'); 
+							
+INSERT INTO fabrica (nome,cnpj, inscricao_estadual,razao_social,telefone,telefone_celular,
+					email,cep,estado,cidade,logradouro,numero,bairro ) VALUES 
+							('VISUAL JEANS','2222222', '2222222', 'Visual Jeans ME', '159357', 'ntem', 
+							'visual@visual.com.br','13467989', 'SC', 'Rio do Sul', 'Rua dos Jeans','200000','Centro'); 							
