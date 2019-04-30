@@ -3,21 +3,20 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table (name = "pedido_venda")
@@ -27,50 +26,63 @@ public class PedidoVenda implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long codigo;
+	private Long codigo;
 	
 	//TODO: Criar atributo do vendedor
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_cliente")
-	Pessoa cliente;
+	private Pessoa cliente;
 	
-	//TODO: Criar atributo transportadora
+	private String transportadora;
 	
 	
 	@OneToMany(mappedBy = "pedido_venda", cascade = CascadeType.ALL,
 			orphanRemoval = true)
-	List<PedidoVendaItem> pedidoVendaItens;
+	private List<PedidoVendaItem> pedidoVendaItens;
 	
 	@Column(name="data_emissao")
-	LocalDate dataEmissao;
+	private LocalDate dataEmissao;
 	
 	@Column(name = "valor_total_bruto")
-	BigDecimal valorTotalBruto;
+	private BigDecimal valorTotalBruto;
 	
 	@Column(name = "valor_total_liquido")
-	BigDecimal valorTotalLiquido;
+	private BigDecimal valorTotalLiquido;
 	
 	@Column(name = "valor_total_acrescimo")
-	BigDecimal valorTotalAcrescimo;
+	private BigDecimal valorTotalAcrescimo;
 	
 	@Column(name = "valor_total_desconto")
-	BigDecimal valorTotalDesconto;
+	private BigDecimal valorTotalDesconto;
 	
 	@Column(name = "valor_total_acrescimo_itens")
-	BigDecimal valorTotalAcrescimoItens;
+	private BigDecimal valorTotalAcrescimoItens;
 	
 	@Column(name = "valor_total_desconto_itens")
-	BigDecimal valorTotalDescontoItens;
+	private BigDecimal valorTotalDescontoItens;
 	
-	String observacao;
+	private String observacao;
 	
 	@Column(name="data_entrega")
-	LocalDate dataEntrega;
+	private LocalDate dataEntrega;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_fabrica")
-	Fabrica fabrica;
+	private Fabrica fabrica;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusPedido statusPedido = StatusPedido.ORCAMENTO;
+
+	
+	
+	public StatusPedido getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(StatusPedido statusPedido) {
+		this.statusPedido = statusPedido;
+	}
 
 	private Long getCodigo() {
 		return codigo;
