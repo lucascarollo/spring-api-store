@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,13 +31,16 @@ public class PedidoVenda implements Serializable {
 	
 	//TODO: Criar atributo do vendedor
 	
+	@ManyToOne
+	@JoinColumn(name = "codigo_cliente")
 	Pessoa cliente;
 	
 	//TODO: Criar atributo transportadora
 	
-	@Transient
-	@OneToMany
-	ArrayList<PedidoVendaItem> pedidoVendaItens;
+	
+	@OneToMany(mappedBy = "pedido_venda", cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	List<PedidoVendaItem> pedidoVendaItens;
 	
 	@Column(name="data_emissao")
 	LocalDate dataEmissao;
@@ -62,7 +68,8 @@ public class PedidoVenda implements Serializable {
 	@Column(name="data_entrega")
 	LocalDate dataEntrega;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "codigo_fabrica")
 	Fabrica fabrica;
 
 	private Long getCodigo() {
@@ -81,11 +88,13 @@ public class PedidoVenda implements Serializable {
 		this.cliente = cliente;
 	}
 
-	private ArrayList<PedidoVendaItem> getPedidoVendaItens() {
+	
+
+	public List<PedidoVendaItem> getPedidoVendaItens() {
 		return pedidoVendaItens;
 	}
 
-	private void setPedidoVendaItens(ArrayList<PedidoVendaItem> pedidoVendaItens) {
+	public void setPedidoVendaItens(List<PedidoVendaItem> pedidoVendaItens) {
 		this.pedidoVendaItens = pedidoVendaItens;
 	}
 
