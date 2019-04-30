@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,17 +31,23 @@ public class PedidoVenda implements Serializable {
 	private Long codigo;
 	
 	//TODO: Criar atributo do vendedor
+	@ManyToOne
+	@JoinColumn(name = "codigo_vendedor")
+	private Vendedor vendedor;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_cliente")
 	private Pessoa cliente;
 	
-	private String transportadora;
+	@ManyToOne
+	@JoinColumn(name = "codigo_fabrica")
+	private Fabrica fabrica;
 	
-	
-	@OneToMany(mappedBy = "pedido_venda", cascade = CascadeType.ALL,
+	@OneToMany(mappedBy="pedidoVenda", cascade = CascadeType.ALL,
 			orphanRemoval = true)
 	private List<PedidoVendaItem> pedidoVendaItens;
+	
+	private String transportadora;
 	
 	@Column(name="data_emissao")
 	private LocalDate dataEmissao;
@@ -67,15 +75,21 @@ public class PedidoVenda implements Serializable {
 	@Column(name="data_entrega")
 	private LocalDate dataEntrega;
 	
-	@ManyToOne
-	@JoinColumn(name = "codigo_fabrica")
-	private Fabrica fabrica;
+
 	
 	@Enumerated(EnumType.STRING)
 	private StatusPedido statusPedido = StatusPedido.ORCAMENTO;
 
 	
 	
+	public String getTransportadora() {
+		return transportadora;
+	}
+
+	public void setTransportadora(String transportadora) {
+		this.transportadora = transportadora;
+	}
+
 	public StatusPedido getStatusPedido() {
 		return statusPedido;
 	}

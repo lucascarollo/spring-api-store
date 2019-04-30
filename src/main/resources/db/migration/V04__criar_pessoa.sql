@@ -1,11 +1,11 @@
 CREATE TABLE pessoa (
 	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(80) NOT NULL,
-    tipo_pessoa VARCHAR(15) NOT NULL,
-    cpf_cnpj VARCHAR(30) NOT NULL,
-    razao_social_ou_rg VARCHAR(30) NOT NULL,
+    nome VARCHAR(80) ,
+    tipo_pessoa VARCHAR(15) ,
+    cpf_cnpj VARCHAR(30) ,
+    razao_social_ou_rg VARCHAR(30) ,
     telefone VARCHAR(20),
-    email VARCHAR(60) NOT NULL,
+    email VARCHAR(60) ,
     data_nascimento DATE,
     logradouro VARCHAR(50),
     numero VARCHAR(15),
@@ -16,3 +16,5 @@ CREATE TABLE pessoa (
     codigo_cidade BIGINT(20),
 	FOREIGN KEY (codigo_cidade) REFERENCES cidade(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO pessoa (nome, codigo_cidade) VALUES ('Bugrinho',1);
