@@ -43,12 +43,22 @@ public class Vendedor implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public Pessoa getVendedor() {
-		return vendedor;
+	
+
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setVendedor(Pessoa vendedor) {
-		this.vendedor = vendedor;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public LocalDate getDataDemissao() {
+		return dataDemissao;
+	}
+
+	public void setDataDemissao(LocalDate dataDemissao) {
+		this.dataDemissao = dataDemissao;
 	}
 
 	public LocalDate getDataAdmissao() {
