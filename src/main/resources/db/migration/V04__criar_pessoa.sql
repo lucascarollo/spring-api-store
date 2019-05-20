@@ -18,3 +18,4 @@ CREATE TABLE pessoa (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO pessoa (nome, codigo_cidade) VALUES ('Bugrinho',1);
+INSERT INTO pessoa (nome, codigo_cidade) VALUES ('Felipe',1);

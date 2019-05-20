@@ -78,6 +78,7 @@ public class PedidoVenda implements Serializable {
 
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name = "status_pedido")
 	private StatusPedido statusPedido = StatusPedido.ORCAMENTO;
 
 	

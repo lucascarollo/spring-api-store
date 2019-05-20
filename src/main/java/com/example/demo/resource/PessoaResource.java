@@ -1,5 +1,6 @@
 package com.example.demo.resource;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -53,6 +54,11 @@ public class PessoaResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, pessoaSalva.getCodigo()));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);	
+	}
+	
+	@GetMapping
+	public List<Pessoa> listarTodas() {
+		return pessoaRepository.findAll();
 	}
 	
 	@GetMapping("/{codigo}")

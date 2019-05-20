@@ -25,7 +25,7 @@ public class Vendedor implements Serializable {
 	
 	@OneToOne
 	@JoinColumn(name = "codigo_pessoa")
-	private Pessoa vendedor;
+	private Pessoa pessoa;
 	
 	@Column(name = "data_admissao")
 	private LocalDate dataAdmissao;

@@ -10,7 +10,7 @@ CREATE TABLE pedido_venda (
     valor_total_desconto DECIMAL(10,2),
     valor_total_acrescimo_itens DECIMAL(10,2) ,
     valor_total_desconto_itens DECIMAL(10,2) ,
-    status VARCHAR(30) NOT NULL,
+    status_pedido VARCHAR(30) NOT NULL,
     observacao VARCHAR(200),
     data_entrega DATE,
     
