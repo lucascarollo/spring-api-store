@@ -21,94 +21,104 @@ public class PedidoVendaItem  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long codigo;
+	private Long codigo;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_pedido_venda")
-	PedidoVenda pedidoVenda;
+	private PedidoVenda pedidoVenda;
 	
 	@ManyToOne
 	@JoinColumn(name="codigo_produto")
-	Produto produto;
+	private Produto produto;
 	
-	int quantidade;
+	private int quantidade;
 	
 	@Column(name = "valor_unitario")
-	BigDecimal valorUnitario;
+	private BigDecimal valorUnitario;
 	
 	@Column(name = "valor_total_bruto")
-	BigDecimal valorTotalBruto;
+	private BigDecimal valorTotalBruto;
 	
 	@Column(name = "valor_total_liquido")
-	BigDecimal valorTotalLiquido;
+	private BigDecimal valorTotalLiquido;
 	
 	@Column(name = "valor_total_desconto")
-	BigDecimal valorTotalDesconto;	
+	private BigDecimal valorTotalDesconto;	
 	
 	@Column(name = "valor_total_acrescimo")
-	BigDecimal valorTotalAcrescimo;
+	private BigDecimal valorTotalAcrescimo;
 
-	private Long getCodigo() {
+	
+
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	private void setCodigo(Long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
-	private Produto getProduto() {
+	public PedidoVenda getPedidoVenda() {
+		return pedidoVenda;
+	}
+
+	public void setPedidoVenda(PedidoVenda pedidoVenda) {
+		this.pedidoVenda = pedidoVenda;
+	}
+
+	public Produto getProduto() {
 		return produto;
 	}
 
-	private void setProduto(Produto produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 
-	private int getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	private void setQuantidade(int quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	private BigDecimal getValorUnitario() {
+	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
 
-	private void setValorUnitario(BigDecimal valorUnitario) {
+	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
 
-	private BigDecimal getValorTotalBruto() {
+	public BigDecimal getValorTotalBruto() {
 		return valorTotalBruto;
 	}
 
-	private void setValorTotalBruto(BigDecimal valorTotalBruto) {
+	public void setValorTotalBruto(BigDecimal valorTotalBruto) {
 		this.valorTotalBruto = valorTotalBruto;
 	}
 
-	private BigDecimal getValorTotalLiquido() {
+	public BigDecimal getValorTotalLiquido() {
 		return valorTotalLiquido;
 	}
 
-	private void setValorTotalLiquido(BigDecimal valorTotalLiquido) {
+	public void setValorTotalLiquido(BigDecimal valorTotalLiquido) {
 		this.valorTotalLiquido = valorTotalLiquido;
 	}
 
-	private BigDecimal getValorTotalDesconto() {
+	public BigDecimal getValorTotalDesconto() {
 		return valorTotalDesconto;
 	}
 
-	private void setValorTotalDesconto(BigDecimal valorTotalDesconto) {
+	public void setValorTotalDesconto(BigDecimal valorTotalDesconto) {
 		this.valorTotalDesconto = valorTotalDesconto;
 	}
 
-	private BigDecimal getValorTotalAcrescimo() {
+	public BigDecimal getValorTotalAcrescimo() {
 		return valorTotalAcrescimo;
 	}
 
-	private void setValorTotalAcrescimo(BigDecimal valorTotalAcrescimo) {
+	public void setValorTotalAcrescimo(BigDecimal valorTotalAcrescimo) {
 		this.valorTotalAcrescimo = valorTotalAcrescimo;
 	}
 

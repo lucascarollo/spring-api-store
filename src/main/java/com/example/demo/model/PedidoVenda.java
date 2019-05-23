@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -45,12 +45,9 @@ public class PedidoVenda implements Serializable {
 	
 	@OneToMany(mappedBy="pedidoVenda", cascade = CascadeType.ALL,
 			orphanRemoval = true)
-	private List<PedidoVendaItem> pedidoVendaItens;
+	private List<PedidoVendaItem> pedidoVendaItens = new ArrayList<>();
 	
 	private String transportadora;
-	
-	@Column(name="data_emissao")
-	private LocalDate dataEmissao;
 	
 	@Column(name = "valor_total_bruto")
 	private BigDecimal valorTotalBruto;
@@ -75,6 +72,9 @@ public class PedidoVenda implements Serializable {
 	@Column(name="data_entrega")
 	private LocalDate dataEntrega;
 	
+	@Column(name="data_emissao")
+	private LocalDateTime dataEmissao;
+	
 
 	
 	@Enumerated(EnumType.STRING)
@@ -83,12 +83,126 @@ public class PedidoVenda implements Serializable {
 
 	
 	
+	
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
+	public Pessoa getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Pessoa cliente) {
+		this.cliente = cliente;
+	}
+
+	public Fabrica getFabrica() {
+		return fabrica;
+	}
+
+	public void setFabrica(Fabrica fabrica) {
+		this.fabrica = fabrica;
+	}
+
+	public List<PedidoVendaItem> getPedidoVendaItens() {
+		return pedidoVendaItens;
+	}
+
+	public void setPedidoVendaItens(List<PedidoVendaItem> pedidoVendaItens) {
+		this.pedidoVendaItens = pedidoVendaItens;
+	}
+
 	public String getTransportadora() {
 		return transportadora;
 	}
 
 	public void setTransportadora(String transportadora) {
 		this.transportadora = transportadora;
+	}
+
+	public LocalDateTime getDataEmissao() {
+		return dataEmissao;
+	}
+
+	public void setDataEmissao(LocalDateTime dataEmissao) {
+		this.dataEmissao = dataEmissao;
+	}
+
+	public BigDecimal getValorTotalBruto() {
+		return valorTotalBruto;
+	}
+
+	public void setValorTotalBruto(BigDecimal valorTotalBruto) {
+		this.valorTotalBruto = valorTotalBruto;
+	}
+
+	public BigDecimal getValorTotalLiquido() {
+		return valorTotalLiquido;
+	}
+
+	public void setValorTotalLiquido(BigDecimal valorTotalLiquido) {
+		this.valorTotalLiquido = valorTotalLiquido;
+	}
+
+	public BigDecimal getValorTotalAcrescimo() {
+		return valorTotalAcrescimo;
+	}
+
+	public void setValorTotalAcrescimo(BigDecimal valorTotalAcrescimo) {
+		this.valorTotalAcrescimo = valorTotalAcrescimo;
+	}
+
+	public BigDecimal getValorTotalDesconto() {
+		return valorTotalDesconto;
+	}
+
+	public void setValorTotalDesconto(BigDecimal valorTotalDesconto) {
+		this.valorTotalDesconto = valorTotalDesconto;
+	}
+
+	public BigDecimal getValorTotalAcrescimoItens() {
+		return valorTotalAcrescimoItens;
+	}
+
+	public void setValorTotalAcrescimoItens(BigDecimal valorTotalAcrescimoItens) {
+		this.valorTotalAcrescimoItens = valorTotalAcrescimoItens;
+	}
+
+	public BigDecimal getValorTotalDescontoItens() {
+		return valorTotalDescontoItens;
+	}
+
+	public void setValorTotalDescontoItens(BigDecimal valorTotalDescontoItens) {
+		this.valorTotalDescontoItens = valorTotalDescontoItens;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public LocalDate getDataEntrega() {
+		return dataEntrega;
+	}
+
+	public void setDataEntrega(LocalDate dataEntrega) {
+		this.dataEntrega = dataEntrega;
 	}
 
 	public StatusPedido getStatusPedido() {
@@ -99,112 +213,21 @@ public class PedidoVenda implements Serializable {
 		this.statusPedido = statusPedido;
 	}
 
-	private Long getCodigo() {
-		return codigo;
+	//SE O CÓDIGO FOR IGUAL A NULL QUER DIZER Q É UMA VENDA NOVA
+	public boolean isNova() {
+		return codigo == null;
 	}
-
-	private void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	private Pessoa getCliente() {
-		return cliente;
-	}
-
-	private void setCliente(Pessoa cliente) {
-		this.cliente = cliente;
-	}
-
 	
-
-	public List<PedidoVendaItem> getPedidoVendaItens() {
-		return pedidoVendaItens;
-	}
-
-	public void setPedidoVendaItens(List<PedidoVendaItem> pedidoVendaItens) {
+	//Aqui é apra que dentro de cada item de venda contenha as informações da venda como o Id da venda
+	public void adicionarItens(List<PedidoVendaItem> pedidoVendaItens) {
 		this.pedidoVendaItens = pedidoVendaItens;
+		this.pedidoVendaItens.forEach(i -> i.setPedidoVenda(this));
 	}
-
-	private LocalDate getDataEmissao() {
-		return dataEmissao;
-	}
-
-	private void setDataEmissao(LocalDate dataEmissao) {
-		this.dataEmissao = dataEmissao;
-	}
-
-	private BigDecimal getValorTotalBruto() {
-		return valorTotalBruto;
-	}
-
-	private void setValorTotalBruto(BigDecimal valorTotalBruto) {
-		this.valorTotalBruto = valorTotalBruto;
-	}
-
-	private BigDecimal getValorTotalLiquido() {
-		return valorTotalLiquido;
-	}
-
-	private void setValorTotalLiquido(BigDecimal valorTotalLiquido) {
-		this.valorTotalLiquido = valorTotalLiquido;
-	}
-
-	private BigDecimal getValorTotalAcrescimo() {
-		return valorTotalAcrescimo;
-	}
-
-	private void setValorTotalAcrescimo(BigDecimal valorTotalAcrescimo) {
-		this.valorTotalAcrescimo = valorTotalAcrescimo;
-	}
-
-	private BigDecimal getValorTotalDesconto() {
-		return valorTotalDesconto;
-	}
-
-	private void setValorTotalDesconto(BigDecimal valorTotalDesconto) {
-		this.valorTotalDesconto = valorTotalDesconto;
-	}
-
-	private BigDecimal getValorTotalAcrescimoItens() {
-		return valorTotalAcrescimoItens;
-	}
-
-	private void setValorTotalAcrescimoItens(BigDecimal valorTotalAcrescimoItens) {
-		this.valorTotalAcrescimoItens = valorTotalAcrescimoItens;
-	}
-
-	private BigDecimal getValorTotalDescontoItens() {
-		return valorTotalDescontoItens;
-	}
-
-	private void setValorTotalDescontoItens(BigDecimal valorTotalDescontoItens) {
-		this.valorTotalDescontoItens = valorTotalDescontoItens;
-	}
-
-	private String getObservacao() {
-		return observacao;
-	}
-
-	private void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	private LocalDate getDataEntrega() {
-		return dataEntrega;
-	}
-
-	private void setDataEntrega(LocalDate dataEntrega) {
-		this.dataEntrega = dataEntrega;
-	}
-
-	private Fabrica getFabrica() {
-		return fabrica;
-	}
-
-	private void setFabrica(Fabrica fabrica) {
-		this.fabrica = fabrica;
-	}
-
+	
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
