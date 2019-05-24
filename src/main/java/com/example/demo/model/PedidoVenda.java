@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,6 +20,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "pedido_venda")
@@ -30,9 +35,10 @@ public class PedidoVenda implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	//TODO: Criar atributo do vendedor
+	
 	@ManyToOne
 	@JoinColumn(name = "codigo_vendedor")
+	// @JsonIgnoreProperties({"dataDemissao", "ativo"})
 	private Vendedor vendedor;
 	
 	@ManyToOne
@@ -214,6 +220,8 @@ public class PedidoVenda implements Serializable {
 	}
 
 	//SE O CÓDIGO FOR IGUAL A NULL QUER DIZER Q É UMA VENDA NOVA
+	@Transient
+	@JsonIgnore
 	public boolean isNova() {
 		return codigo == null;
 	}

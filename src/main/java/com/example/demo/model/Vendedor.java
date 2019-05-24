@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "vendedor")
@@ -25,6 +28,7 @@ public class Vendedor implements Serializable {
 	
 	@OneToOne
 	@JoinColumn(name = "codigo_pessoa")
+	@JsonIgnoreProperties({"endereco", "tipoPessoa", "cpfOuCnpj", "razaoSocialOuRg", "telefone", "email", "dataNascimento"})
 	private Pessoa pessoa;
 	
 	@Column(name = "data_admissao")
@@ -35,6 +39,11 @@ public class Vendedor implements Serializable {
 	
 	private Boolean ativo;
 
+	
+
+	
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -43,22 +52,12 @@ public class Vendedor implements Serializable {
 		this.codigo = codigo;
 	}
 
-	
-
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}
-
-	public LocalDate getDataDemissao() {
-		return dataDemissao;
-	}
-
-	public void setDataDemissao(LocalDate dataDemissao) {
-		this.dataDemissao = dataDemissao;
 	}
 
 	public LocalDate getDataAdmissao() {
@@ -69,12 +68,12 @@ public class Vendedor implements Serializable {
 		this.dataAdmissao = dataAdmissao;
 	}
 
-	public LocalDate getDatademissao() {
+	public LocalDate getDataDemissao() {
 		return dataDemissao;
 	}
 
-	public void setDatademissao(LocalDate datademissao) {
-		this.dataDemissao = datademissao;
+	public void setDataDemissao(LocalDate dataDemissao) {
+		this.dataDemissao = dataDemissao;
 	}
 
 	public Boolean getAtivo() {

@@ -10,3 +10,4 @@ CREATE TABLE vendedor (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO vendedor (codigo_pessoa,ativo) VALUES (1, true);
+INSERT INTO vendedor (codigo_pessoa,ativo) VALUES (2, true);
